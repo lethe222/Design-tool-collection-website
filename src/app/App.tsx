@@ -39,11 +39,11 @@ const TOOLS: Tool[] = [
     name: "Asspp Web",
     nameEn: "Asspp Web",
     description:
-      "一个轻量在线资源处理工具，支持多种格式的资源快速预览与转换操作。",
-    tags: ["资源处理", "预览", "转换"],
+      "一键检索与提取 Apple 应用历史版本。支持国内外 Apple ID 登录，直观获取 App Store 历史版本包，让旧版 App 触手可及。",
+    tags: ["App Store", "历史版本", "Apple ID"],
     status: "active",
     url: "https://101.200.38.189.nip.io/",
-    category: "图片处理",
+    category: "苹果工具",
   },
   {
     id: "ae-script",
@@ -58,13 +58,13 @@ const TOOLS: Tool[] = [
   },
   {
     id: "eagle-lottie",
-    name: "Eagle · Lottie 预览",
+    name: "Eagle——Lottie 预览 (Vue 3)",
     nameEn: "Eagle Lottie Plugin (Vue 3)",
     description:
       "在 Eagle 内随心预览 Lottie 动画，支持外部图片资源的 Lottie 文件和 ZIP 包，Vue 3 重写版。",
     tags: ["Eagle", "Lottie", "插件", "Vue 3"],
     status: "active",
-    url: "#",
+    url: "https://community-cn.eagle.cool/plugin/b27b746f-9ff6-4c59-b4a3-a689d43a9cd1",
     category: "动效工具",
   },
   {
