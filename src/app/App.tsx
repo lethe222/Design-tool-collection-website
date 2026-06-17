@@ -74,7 +74,8 @@ const TOOLS: Tool[] = [
     description:
       "输入目标字符集，从完整字体文件中提取所需字形，生成极小体积的子集字体文件。",
     tags: ["字体", "子集化", "Web字体"],
-    status: "coming-soon",
+    status: "active",
+    url: "https://lethe222.github.io/Font-editor-website/",
     category: "字体工具",
   },
   {
