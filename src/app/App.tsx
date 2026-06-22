@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { MessageSquare } from "lucide-react";
 import { AppHeader } from "./components/AppHeader";
 import { HeroText } from "./components/HeroText";
 import {
@@ -9,6 +10,7 @@ import {
 import { ToolGrid } from "./components/ToolGrid";
 import { AppFooter } from "./components/AppFooter";
 import type { Tool } from "./components/ToolCard";
+import FeedbackForm from "./components/FeedbackForm";
 import organizerScriptUrl from "../imports/files/项目整理1.5.jsxbin?url";
 
 const TOOLS: Tool[] = [
@@ -93,6 +95,7 @@ const TOOLS: Tool[] = [
 export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<Category>("全部");
+  const [showFeedback, setShowFeedback] = useState(false);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -133,6 +136,19 @@ export default function App() {
         />
       </main>
       <AppFooter />
+
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <button
+          onClick={() => setShowFeedback(true)}
+          title="用户反馈"
+          className="flex items-center justify-center rounded-2xl shadow-lg hover:scale-110 transition-transform"
+          style={{ width: 44, height: 44, background: "linear-gradient(135deg, #7c6ef2, #a78bfa)" }}
+        >
+          <MessageSquare size={20} color="white" />
+        </button>
+      </div>
+
+      <FeedbackForm isOpen={showFeedback} onClose={() => setShowFeedback(false)} />
     </div>
   );
 }
