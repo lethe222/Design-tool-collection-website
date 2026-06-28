@@ -21,6 +21,11 @@ export function ToolGrid({ tools, searchQuery, activeCategory }: ToolGridProps) 
       t.description.toLowerCase().includes(q) ||
       t.tags.some((tag) => tag.toLowerCase().includes(q));
 
+    // placeholder 卡片只在 "全部" 分类且无搜索词时显示
+    if (t.status === "placeholder") {
+      return activeCategory === "全部" && !q;
+    }
+
     return matchCat && matchSearch;
   });
 

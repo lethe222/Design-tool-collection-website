@@ -752,6 +752,63 @@ function FontBase64Icon() {
   );
 }
 
+function MoreToolsIcon() {
+  return (
+    <svg
+      viewBox="0 0 280 148"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: "100%", height: "100%" }}
+    >
+      <rect width="280" height="148" fill="#F5F6F8" />
+      {/* Decorative elements */}
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <rect
+            x={40 + i * 75}
+            y={40}
+            width="56"
+            height="56"
+            rx="12"
+            fill="white"
+            fillOpacity={0.6 - i * 0.15}
+            stroke="#E0E3E8"
+            strokeWidth="1"
+          />
+          <rect
+            x={48 + i * 75}
+            y={48}
+            width="40"
+            height="40"
+            rx="8"
+            fill="#D8DCE3"
+            fillOpacity={0.5}
+          />
+        </g>
+      ))}
+      {/* Plus icons */}
+      <circle cx="140" cy="110" r="18" fill="#8F959E" fillOpacity="0.12" />
+      <path
+        d="M140 102 V118M132 110 H148"
+        stroke="#8F959E"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+      {/* Text */}
+      <text
+        x="140"
+        y="138"
+        fontSize="9"
+        fill="#8F959E"
+        textAnchor="middle"
+        fontFamily="system-ui"
+      >
+        更多实用工具持续开发中
+      </text>
+    </svg>
+  );
+}
+
 const iconMap: Record<string, () => JSX.Element> = {
   "webp-compress": WebPIcon,
   "lottie-player": LottieIcon,
@@ -760,6 +817,7 @@ const iconMap: Record<string, () => JSX.Element> = {
   "font-trim": FontTrimIcon,
   "font-base64": FontBase64Icon,
   "eagle-lottie": EagleLottieIcon,
+  "more-tools-coming": MoreToolsIcon,
 };
 
 interface ToolIconProps {

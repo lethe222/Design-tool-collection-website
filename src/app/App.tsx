@@ -22,7 +22,7 @@ const TOOLS: Tool[] = [
       "将 PNG / JPG 图片转换并压缩为 WebP 格式，可自由调节质量参数，大幅减小图片体积。",
     tags: ["图片", "压缩", "WebP"],
     status: "active",
-    url: "http://101.200.38.189:18793/",
+    url: "https://lethe222.github.io/compression_webp/",
     category: "图片处理",
   },
   {
@@ -87,8 +87,18 @@ const TOOLS: Tool[] = [
     description:
       "上传 TTF / OTF / WOFF 字体文件，即刻生成 Base64 编码字符串，方便内联嵌入 CSS。",
     tags: ["字体", "Base64", "CSS内联"],
-    status: "coming-soon",
+    status: "active",
+    url: "https://lethe222.github.io/Generate-Base64-Font-String/",
     category: "字体工具",
+  },
+  {
+    id: "more-tools-coming",
+    name: "更多工具在路上...",
+    nameEn: "More Tools Coming...",
+    description: "我们正在持续开发更多实用工具，敬请期待！如有工具需求或建议，欢迎通过右下角反馈按钮联系我们。",
+    tags: ["持续更新", "敬请期待"],
+    status: "placeholder",
+    category: "",
   },
 ];
 
@@ -142,13 +152,20 @@ export default function App() {
           onClick={() => setShowFeedback(true)}
           title="用户反馈"
           className="flex items-center justify-center rounded-2xl shadow-lg hover:scale-110 transition-transform"
-          style={{ width: 44, height: 44, background: "linear-gradient(135deg, #7c6ef2, #a78bfa)" }}
+          style={{
+            width: 44,
+            height: 44,
+            background: "linear-gradient(135deg, #7c6ef2, #a78bfa)",
+          }}
         >
           <MessageSquare size={20} color="white" />
         </button>
       </div>
 
-      <FeedbackForm isOpen={showFeedback} onClose={() => setShowFeedback(false)} />
+      <FeedbackForm
+        isOpen={showFeedback}
+        onClose={() => setShowFeedback(false)}
+      />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowUpRight, Download, Clock, WifiOff } from "lucide-react";
 import { ToolIcon } from "./ToolIcon";
 
-export type ToolStatus = "active" | "coming-soon" | "download" | "unavailable";
+export type ToolStatus = "active" | "coming-soon" | "download" | "unavailable" | "placeholder";
 
 export interface Tool {
   id: string;
@@ -23,6 +23,7 @@ interface ToolCardProps {
 export function ToolCard({ tool }: ToolCardProps) {
   const [hovered, setHovered] = useState(false);
   const isInteractive = tool.status === "active" || tool.status === "download";
+  const isPlaceholder = tool.status === "placeholder";
 
   const handleClick = () => {
     if (!isInteractive) return;
@@ -42,20 +43,20 @@ export function ToolCard({ tool }: ToolCardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        backgroundColor: "#FFFFFF",
+        backgroundColor: isPlaceholder ? "#F8F9FC" : "#FFFFFF",
         borderRadius: 12,
         overflow: "hidden",
-        border: "1px solid rgba(0,0,0,0.06)",
+        border: `1px solid ${isPlaceholder ? "rgba(0,0,0,0.04)" : "rgba(0,0,0,0.06)"}`,
         cursor: isInteractive ? "pointer" : "default",
         boxShadow: hovered && isInteractive
           ? "0 4px 20px rgba(51,112,255,0.1), 0 1px 4px rgba(0,0,0,0.06)"
           : "0 1px 4px rgba(0,0,0,0.05)",
         transform: hovered && isInteractive ? "translateY(-2px)" : "translateY(0)",
         transition: "box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease",
-        borderColor: hovered && isInteractive ? "rgba(51,112,255,0.2)" : "rgba(0,0,0,0.06)",
+        borderColor: hovered && isInteractive ? "rgba(51,112,255,0.2)" : (isPlaceholder ? "rgba(0,0,0,0.04)" : "rgba(0,0,0,0.06)"),
         display: "flex",
         flexDirection: "column",
-        opacity: (tool.status === "coming-soon" || tool.status === "unavailable") ? 0.75 : 1,
+        opacity: (tool.status === "coming-soon" || tool.status === "unavailable") ? 0.75 : (isPlaceholder ? 0.9 : 1),
       }}
     >
       {/* Icon preview area */}
@@ -69,13 +70,13 @@ export function ToolCard({ tool }: ToolCardProps) {
         }}
       >
         <ToolIcon toolId={tool.id} />
-        {/* Coming soon / unavailable overlay */}
-        {(tool.status === "coming-soon" || tool.status === "unavailable") && (
+        {/* Coming soon / unavailable / placeholder overlay */}
+        {(tool.status === "coming-soon" || tool.status === "unavailable" || isPlaceholder) && (
           <div
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: "rgba(248,249,252,0.6)",
+              backgroundColor: isPlaceholder ? "rgba(248,249,252,0.85)" : "rgba(248,249,252,0.6)",
               backdropFilter: "blur(2px)",
               WebkitBackdropFilter: "blur(2px)",
               display: "flex",
@@ -99,6 +100,11 @@ export function ToolCard({ tool }: ToolCardProps) {
                 <>
                   <WifiOff size={11} color="#8F959E" strokeWidth={2} />
                   <span style={{ fontSize: 12, color: "#646A73", fontWeight: 500 }}>链接维护中</span>
+                </>
+              ) : isPlaceholder ? (
+                <>
+                  <Clock size={11} color="#8F959E" strokeWidth={2} />
+                  <span style={{ fontSize: 12, color: "#646A73", fontWeight: 500 }}>持续更新中</span>
                 </>
               ) : (
                 <>
